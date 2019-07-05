@@ -6,7 +6,7 @@ candidato(catherine,partidoRojo).
 
 candidato(garret,partidoAzul).
 candidato(linda,partidoAzul).
-
+asdasd
 candidato(jackie,partidoAmarillo).
 candidato(seth,partidoAmarillo).
 candidato(heather,partidoAmarillo).
@@ -73,3 +73,50 @@ esPicante(Provincia) :-
     Cantidad>1000000.
 
 % Punto 3 % 
+
+% intencionDeVotoEn(Provincia, Partido, Porcentaje)
+intencionDeVotoEn(buenosAires, rojo, 40).
+intencionDeVotoEn(buenosAires, azul, 30).
+intencionDeVotoEn(buenosAires, amarillo, 30).
+intencionDeVotoEn(chaco, rojo, 50).
+intencionDeVotoEn(chaco, azul, 20).
+intencionDeVotoEn(chaco, amarillo, 0).
+intencionDeVotoEn(tierraDelFuego, rojo, 40).
+intencionDeVotoEn(tierraDelFuego, azul, 20).
+intencionDeVotoEn(tierraDelFuego, amarillo, 10).
+intencionDeVotoEn(sanLuis, rojo, 50).
+intencionDeVotoEn(sanLuis, azul, 20).
+intencionDeVotoEn(sanLuis, amarillo, 0).
+intencionDeVotoEn(neuquen, rojo, 80).
+intencionDeVotoEn(neuquen, azul, 10).
+intencionDeVotoEn(neuquen, amarillo, 0).
+intencionDeVotoEn(santaFe, rojo, 20).
+intencionDeVotoEn(santaFe, azul, 40).
+intencionDeVotoEn(santaFe, amarillo, 40).
+intencionDeVotoEn(cordoba, rojo, 10).
+intencionDeVotoEn(cordoba, azul, 60).
+intencionDeVotoEn(cordoba, amarillo, 20).
+intencionDeVotoEn(chubut, rojo, 15).
+intencionDeVotoEn(chubut, azul, 15).
+intencionDeVotoEn(chubut, amarillo, 15).
+intencionDeVotoEn(formosa, rojo, 0).
+intencionDeVotoEn(formosa, azul, 0).
+intencionDeVotoEn(formosa, amarillo, 0).
+intencionDeVotoEn(tucuman, rojo, 40).
+intencionDeVotoEn(tucuman, azul, 40).
+intencionDeVotoEn(tucuman, amarillo, 20).
+intencionDeVotoEn(salta, rojo, 30).
+intencionDeVotoEn(salta, azul, 60).
+intencionDeVotoEn(salta, amarillo, 10).
+intencionDeVotoEn(santaCruz, rojo, 10).
+intencionDeVotoEn(santaCruz, azul, 20).
+intencionDeVotoEn(santaCruz, amarillo, 30).
+intencionDeVotoEn(laPampa, rojo, 25).
+intencionDeVotoEn(laPampa, azul, 25).
+intencionDeVotoEn(laPampa, amarillo, 40).
+intencionDeVotoEn(corrientes, rojo, 30).
+intencionDeVotoEn(corrientes, azul, 30).
+intencionDeVotoEn(corrientes, amarillo, 10).
+intencionDeVotoEn(misiones, rojo, 90).
+intencionDeVotoEn(misiones, azul, 0).
+intencionDeVotoEn(misiones, amarillo, 0).
