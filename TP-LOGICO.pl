@@ -1,3 +1,5 @@
+% Punto 1 %
+
 candidato(frank,partidoRojo).
 candidato(claire,partidoRojo).
 candidato(catherine,partidoRojo).
@@ -15,7 +17,7 @@ edad(garret,64).
 edad(jackie,38).
 edad(linda,30).
 edad(catherine,59).
-edad(heather,50)
+edad(heather,50).
 
 sePostula(partidoAzul,buenosAires).
 sePostula(partidoAzul,chaco).
@@ -60,3 +62,14 @@ habitantesDe(misiones,1189446).
 % Peter no es candidato del partido Amarillo,
 % El partidoRojo Finalmente no se presentará en Formosa.
 % no los agrego por el principio de universo cerrado. %
+
+% Punto 2 %
+
+esPicante(Provincia) :- 
+    sePostula(Candidato1,Provincia),
+    sePostula(Candidato2,Provincia),
+    habitantesDe(Provincia,Cantidad),
+    Candidato1 \= Candidato2,
+    Cantidad>1000000.
+
+% Punto 3 % 
