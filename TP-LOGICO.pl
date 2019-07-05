@@ -1,46 +1,45 @@
 % Punto 1 %
 
-candidato(frank,partidoRojo).
-candidato(claire,partidoRojo).
-candidato(catherine,partidoRojo).
+candidato(frank,rojo).
+candidato(claire,rojo).
+candidato(catherine,rojo).
 
-candidato(garret,partidoAzul).
-candidato(linda,partidoAzul).
-asdasd
-candidato(jackie,partidoAmarillo).
-candidato(seth,partidoAmarillo).
-candidato(heather,partidoAmarillo).
+candidato(garrett,azul).
+candidato(linda,azul).
+candidato(jackie,amarillo).
+candidato(seth,amarillo).
+candidato(heather,amarillo).
 
 edad(frank,50).
 edad(claire,52).
-edad(garret,64).
+edad(garrett,64).
 edad(jackie,38).
 edad(linda,30).
 edad(catherine,59).
 edad(heather,50).
 
-sePostula(partidoAzul,buenosAires).
-sePostula(partidoAzul,chaco).
-sePostula(partidoAzul,tierraDelFuego).
-sePostula(partidoAzul,sanLuis).
-sePostula(partidoAzul,neuquen).
+sePostulaEn(azul,buenosAires).
+sePostulaEn(azul,chaco).
+sePostulaEn(azul,tierraDelFuego).
+sePostulaEn(azul,sanLuis).
+sePostulaEn(azul,neuquen).
 
-sePostula(partidoRojo,buenosAires).
-sePostula(partidoRojo,santaFe).
-sePostula(partidoRojo,cordoba).
-sePostula(partidoRojo,chubut).
-sePostula(partidoRojo,tierraDelFuego).
-sePostula(partidoRojo,sanLuis).
+sePostulaEn(rojo,buenosAires).
+sePostulaEn(rojo,santaFe).
+sePostulaEn(rojo,cordoba).
+sePostulaEn(rojo,chubut).
+sePostulaEn(rojo,tierraDelFuego).
+sePostulaEn(rojo,sanLuis).
 
-sePostula(partidoAmarillo,chaco).
-sePostula(partidoAmarillo,formosa).
-sePostula(partidoAmarillo,tucuman).
-sePostula(partidoAmarillo,salta).
-sePostula(partidoAmarillo,santaCruz).
-sePostula(partidoAmarillo,laPampa).
-sePostula(partidoAmarillo,corrientes).
-sePostula(partidoAmarillo,misiones).
-sePostula(partidoAmarillo,buenosAires).
+sePostulaEn(amarillo,chaco).
+sePostulaEn(amarillo,formosa).
+sePostulaEn(amarillo,tucuman).
+sePostulaEn(amarillo,salta).
+sePostulaEn(amarillo,santaCruz).
+sePostulaEn(amarillo,laPampa).
+sePostulaEn(amarillo,corrientes).
+sePostulaEn(amarillo,misiones).
+sePostulaEn(amarillo,buenosAires).
 
 habitantesDe(buenosAires,15355000).
 habitantesDe(chaco,1143201).
@@ -66,10 +65,10 @@ habitantesDe(misiones,1189446).
 % Punto 2 %
 
 esPicante(Provincia) :- 
-    sePostula(Candidato1,Provincia),
-    sePostula(Candidato2,Provincia),
+    compiteEn(Partido1,Provincia),
+    compiteEn(Partido2,Provincia),
     habitantesDe(Provincia,Cantidad),
-    Candidato1 \= Candidato2,
+    Partido1 \= Partido2,
     Cantidad>1000000.
 
 % Punto 3 % 
@@ -120,3 +119,76 @@ intencionDeVotoEn(corrientes, amarillo, 10).
 intencionDeVotoEn(misiones, rojo, 90).
 intencionDeVotoEn(misiones, azul, 0).
 intencionDeVotoEn(misiones, amarillo, 0).
+
+compiteEn(UnCandidato,Provincia) :-
+    candidato(UnCandidato,Partido),
+    sePostulaEn(Partido,Provincia).
+
+
+porcentajeDeEn(UnCandidato,UnaProvincia,Porcentaje) :-
+    compiteEn(UnCandidato,UnaProvincia),
+    intencionDeVotoEn(UnaProvincia,_,Porcentaje).
+
+leGanaA(UnCandidato,OtroCandidato,Provincia) :-
+    compiteEn(UnCandidato,Provincia),
+    candidato(OtroCandidato,_),
+    not(sePostulaEn(OtroCandidato,Provincia)).
+
+leGanaA(UnCandidato,OtroCandidato,Provincia) :-
+    porcentajeDeEn(UnCandidato,Provincia,Porcentaje1),
+    porcentajeDeEn(OtroCandidato,Provincia,Porcentaje2),
+    OtroCandidato\=UnCandidato,
+    Porcentaje1>Porcentaje2.
+
+leGanaA(UnCandidato,OtroCandidato,Provincia) :-
+    candidato(UnCandidato,Partido),
+    candidato(OtroCandidato,Partido),
+    sePostulaEn(Partido,Provincia).
+
+
+
+%P4
+/*porcentajeDeEn(UnCandidato,UnaProvincia,Porcentaje) :-
+    sePostulaEn(UnCandidato,UnaProvincia,Partido),
+    intencionDeVotoEn(UnaProvincia,Partido,Porcentaje).
+
+gana(UnaProvincia,UnCandidato) :-
+    porcentajeDeEn(UnCandidato,UnaProvincia,Porcentaje),
+    forall(intencionDeVotoEn(UnaProvincia,_,OtroPorcentaje), Porcentaje >= OtroPorcentaje).
+
+
+elGranCandidato(UnCandidato) :-
+    candidato(UnCandidato,Partido),
+    forall(compiteEn(Partido,UnaProvincia),gana(UnaProvincia,UnCandidato)).
+*/
+
+  
+esMasJovenQue(UnCandidato,OtroCandidato):-
+    edad(UnCandidato,Edad1),
+    edad(OtroCandidato,Edad2),
+    Edad2 >= Edad1.
+  
+candidatoMasJovenDelPartido(UnCandidato):-
+    candidato(UnCandidato,UnPartido),
+    forall((candidato(OtroCandidato,UnPartido), OtroCandidato \= UnCandidato), esMasJovenQue(UnCandidato,OtroCandidato)).
+  
+elGranCandidato(UnCandidato):-
+    forall((sePostulaEn(UnCandidato,UnaProvincia),leGanaA(UnCandidato,_,UnaProvincia)),candidatoMasJovenDelPartido(UnCandidato)).
+%-----
+
+compiteEnProvincia(UnCandidato, UnaProvincia):-
+    esCandidatoDel(UnCandidato, UnPartido),
+    sePostulaEn(UnPartido, UnaProvincia).
+  
+  esMasJovenQue(UnCandidato,OtroCandidato):-
+      edad(UnCandidato,Edad1),
+      edad(OtroCandidato,Edad2),
+      Edad2 >= Edad1.
+  
+  candidatoMasJovenDelPartido(UnCandidato):-
+      esCandidatoDel(UnCandidato,UnPartido),
+      forall((esCandidatoDel(OtroCandidato,UnPartido), OtroCandidato \= UnCandidato), esMasJovenQue(UnCandidato,OtroCandidato)).
+  
+  elGranCandidato(UnCandidato):-
+      forall(compiteEnProvincia(UnCandidato,UnaProvincia),leGanaA(UnCandidato,_,UnaProvincia)),
+      candidatoMasJovenDelPartido(UnCandidato).
