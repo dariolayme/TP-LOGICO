@@ -54,4 +54,9 @@ habitantesDe(salta,1333365).
 habitantesDe(santaCruz,273964).
 habitantesDe(laPampa,349299).
 habitantesDe(corrientes,992595).
+habitantesDe(misiones,1189446).
 
+% El partido violeta no tiene candidatos ,
+% Peter no es candidato del partido Amarillo,
+% El partidoRojo Finalmente no se presentará en Formosa.
+% no los agrego por el principio de universo cerrado. %
